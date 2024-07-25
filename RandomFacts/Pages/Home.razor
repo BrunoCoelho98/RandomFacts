@@ -1,0 +1,34 @@
+﻿@page "/"
+@inject RandomFactsService RandomFactsService
+@using System;
+@using RandomFacts.Models;
+
+<PageTitle>Home</PageTitle>
+
+<div class="container text-center mt-5">
+    
+    <button class="btn btn-primary" @onclick="ShowRandomFact">Show me a random fact</button>
+
+    @if (randomFact != null)
+    {
+        <p class="mt-4 slide-in-right">@randomFact.text</p>
+    }
+
+</div>
+
+@code {
+    private RandomFact randomFact;
+
+    private async Task ShowRandomFact()
+    {
+        try
+        {
+            randomFact = null;
+            randomFact = await RandomFactsService.GetRandomFact();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

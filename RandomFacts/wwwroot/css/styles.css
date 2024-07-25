@@ -1,0 +1,19 @@
+﻿/* wwwroot/css/styles.css */
+
+.slide-in-right {
+    animation: slideInRight 2s forwards;
+    /**/
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(40%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
