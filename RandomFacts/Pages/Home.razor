@@ -5,14 +5,15 @@
 
 <PageTitle>Home</PageTitle>
 
-<div class="container text-center mt-5">
+<div class="container text-center mt-5 center-container">
     
-    <button class="btn btn-primary" @onclick="ShowRandomFact">Show me a random fact</button>
 
     @if (randomFact != null)
     {
         <p class="mt-4 slide-in-right">@randomFact.text</p>
     }
+
+    <button class="btn btn-primary" @onclick="ShowRandomFact">Show me a random fact</button>
 
 </div>
 
