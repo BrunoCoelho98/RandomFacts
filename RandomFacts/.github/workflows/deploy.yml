@@ -40,17 +40,16 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish
-        run: dotnet publish RandomFacts.csproj -c Release -o docs --no-logo
+        run: dotnet publish RandomFacts.csproj -c:Release -o docs --nologo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload Pages
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'docs/wwwroot'
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output/wwwroot
