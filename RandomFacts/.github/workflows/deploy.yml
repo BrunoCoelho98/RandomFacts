@@ -5,14 +5,13 @@ on:
     branches: ["master"]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 
 jobs:
   deploy:
@@ -28,11 +27,11 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x' 
+          dotnet-version: '8.0.x'
 
       - name: Install .NET Wasm Tools
-        run: dotnet workload intall wasm-tools
-      
+        run: dotnet workload install wasm-tools
+
       - name: Restore Dependencies
         run: dotnet restore
 
@@ -40,7 +39,7 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish
-        run: dotnet publish RandomFacts.csproj -c:Release -o docs --nologo
+        run: dotnet publish RandomFacts.csproj -c Release -o docs --nologo
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
